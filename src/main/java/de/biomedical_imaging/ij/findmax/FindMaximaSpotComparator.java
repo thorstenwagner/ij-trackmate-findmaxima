@@ -5,10 +5,8 @@ import java.util.Comparator;
 
 import net.imglib2.Point;
 import net.imglib2.RandomAccess;
-import net.imglib2.img.Img;
 import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
-import net.imglib2.type.numeric.real.FloatType;
 
 public class FindMaximaSpotComparator< T extends RealType< T > & NativeType< T >>  implements Comparator<Point> {
 

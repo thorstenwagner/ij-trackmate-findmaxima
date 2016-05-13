@@ -195,7 +195,8 @@ public class FindMaximaSpotDetectorFactory< T extends RealType< T > & NativeType
 	@Override
 	public ConfigurationPanel getDetectorConfigurationPanel( final Settings settings, final Model model )
 	{
-		return new LogDetectorConfigurationPanel( settings.imp, INFO_TEXT, NAME, model )
+		
+		return new FindMaximaConfigurationPanel( settings, model, INFO_TEXT, NAME )
 		{
 			private static final long serialVersionUID = 1L;
 

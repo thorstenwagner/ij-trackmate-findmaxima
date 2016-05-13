@@ -1,8 +1,6 @@
 package de.biomedical_imaging.ij.findmax;
 
 
-import ij.IJ;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +10,6 @@ import java.util.concurrent.Executors;
 
 import org.scijava.plugin.Parameter;
 
-import net.imagej.ops.OpService;
 import net.imagej.patcher.LegacyInjector;
 import net.imglib2.Interval;
 import net.imglib2.Point;
@@ -25,14 +22,10 @@ import net.imglib2.algorithm.localextrema.SubpixelLocalization;
 import net.imglib2.algorithm.localextrema.LocalExtrema.MaximumCheck;
 import net.imglib2.img.Img;
 import net.imglib2.img.ImgFactory;
-import net.imglib2.outofbounds.OutOfBoundsMirrorFactory;
-import net.imglib2.outofbounds.OutOfBoundsMirrorFactory.Boundary;
 import net.imglib2.type.NativeType;
 import net.imglib2.type.numeric.RealType;
 import net.imglib2.type.numeric.real.FloatType;
 import net.imglib2.util.Util;
-import net.imglib2.view.IntervalView;
-import net.imglib2.view.Views;
 import fiji.plugin.trackmate.Spot;
 import fiji.plugin.trackmate.detection.DetectionUtils;
 import fiji.plugin.trackmate.detection.SpotDetector;
@@ -41,8 +34,7 @@ public class FindMaximaSpotDetector<T extends RealType<T> & NativeType<T>>
 		implements SpotDetector<T>, MultiThreaded {
 
 	@Parameter
-    private OpService ops;
-    
+
 	private static final String BASE_ERROR_MESSAGE = "[FindMaximaSpotDetector] ";
 
 	private static final double DEFAULT_RADIUS = 2.5;
