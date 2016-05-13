@@ -196,65 +196,7 @@ public class FindMaximaSpotDetectorFactory< T extends RealType< T > & NativeType
 	public ConfigurationPanel getDetectorConfigurationPanel( final Settings settings, final Model model )
 	{
 		
-		return new FindMaximaConfigurationPanel( settings, model, INFO_TEXT, NAME )
-		{
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected void initGUI()
-			{
-				// Customize GUI.
-
-				super.initGUI();
-				jCheckBoxMedianFilter.setVisible( false );
-				jCheckSubPixel.setVisible( false );
-				jLabelThreshold.setText( "Tolerance:" );
-			}
-
-			@Override
-			public void setSettings( final Map< String, Object > settings )
-			{
-				sliderChannel.setValue( ( Integer ) settings.get( KEY_TARGET_CHANNEL ) );
-				double radius = ( Double ) settings.get( KEY_RADIUS );
-				if ( imp != null )
-				{
-					final Calibration calibration = imp.getCalibration();
-					// Not too large
-					final double maxWidth = imp.getWidth() * 0.5 * ( calibration == null ? 1 : calibration.pixelWidth );
-					final double maxHeight = imp.getHeight() * 0.5 * ( calibration == null ? 1 : calibration.pixelHeight );
-					final double max = maxWidth < maxHeight ? maxWidth : maxHeight;
-					if ( radius > max )
-					{
-						radius *= max * 4 / ( imp.getWidth() + imp.getHeight() );
-					}
-					// Not too small
-					final double pw = calibration == null ? 1 : calibration.pixelWidth;
-					radius = Math.max( radius / pw, 1.5 ) * pw;
-				}
-				jTextFieldBlobDiameter.setText( "" + ( 2 * radius ) );
-				jTextFieldThreshold.setText( "" + settings.get( KEY_THRESHOLD ) );
-			}
-
-			@Override
-			public Map< String, Object > getSettings()
-			{
-				final HashMap< String, Object > settings = new HashMap< String, Object >( 5 );
-				final int targetChannel = sliderChannel.getValue();
-				final double expectedRadius = NumberParser.parseDouble( jTextFieldBlobDiameter.getText() ) / 2;
-				final double threshold = NumberParser.parseDouble( jTextFieldThreshold.getText() );
-				settings.put( KEY_TARGET_CHANNEL, targetChannel );
-				settings.put( KEY_RADIUS, expectedRadius );
-				settings.put( KEY_THRESHOLD, threshold );
-				return settings;
-			}
-
-			@SuppressWarnings( { "rawtypes", "unchecked" } )
-			@Override
-			protected SpotDetectorFactory getDetectorFactory()
-			{
-				return new FindMaximaSpotDetectorFactory();
-			}
-		};
+		return new FindMaximaConfigurationPanel( settings, model, INFO_TEXT, NAME );
 	}
 
 	@Override
