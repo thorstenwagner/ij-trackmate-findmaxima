@@ -63,7 +63,10 @@ public class FindMaximaSpotDetectorFactory< T extends RealType< T > & NativeType
 			+ "A threshold value allows for rejecting weak maxima. "
 			+ "<p>"
 			+ "The 'Threshold' parameter here emulates the 'Noise tolerance' parameter in the ImageJ plugin. "
-			+ "Maxima on the edges of the image are excluded." + "</html>";
+			+ "Maxima on the edges of the image are excluded." 
+			+ "<p>"
+			+ "Subpixel accuracy is activated by default." 
+			+ "</html>";
 
 	/*
 	 * FIELDS
