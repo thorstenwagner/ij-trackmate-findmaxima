@@ -1,4 +1,5 @@
-package fiji.plugin.trackmate.detection.findmaxima;
+package de.biomedical_imaging.ij.findmax;
+
 
 import ij.IJ;
 

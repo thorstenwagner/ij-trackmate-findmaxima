@@ -1,4 +1,4 @@
-package fiji.plugin.trackmate.detection.findmaxima;
+package de.biomedical_imaging.ij.findmax;
 
 import static fiji.plugin.trackmate.detection.DetectorKeys.DEFAULT_RADIUS;
 import static fiji.plugin.trackmate.detection.DetectorKeys.DEFAULT_TARGET_CHANNEL;

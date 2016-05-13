@@ -1,4 +1,6 @@
-package fiji.plugin.trackmate.detection.findmaxima;
+package de.biomedical_imaging.ij.findmax;
+
+
 
 import net.imglib2.Localizable;
 import net.imglib2.Point;
