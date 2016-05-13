@@ -15,7 +15,7 @@
 </parent>
 
 	<artifactId>TrackMate_FindMaxima</artifactId>
-	<version>0.0.1</version>
+	<version>1.0.0</version>
 
 	<name>TrackMate_FindMaxima.jar</name>
 	<description>TrackMate find maxima modules</description>
