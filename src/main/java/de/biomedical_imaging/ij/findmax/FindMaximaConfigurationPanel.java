@@ -113,7 +113,7 @@ public class FindMaximaConfigurationPanel extends ConfigurationPanel
 	 */
 
 	/**
-	 * Creates a new {@link LogDetectorConfigurationPanel}, a GUI able to
+	 * Creates a new LogDetectorConfigurationPanel, a GUI able to
 	 * configure settings suitable to {@link LogDetectorFactory} and derived
 	 * implementations.
 	 *

@@ -1,6 +1,8 @@
 package de.biomedical_imaging.ij.findmax;
 
 
+import ij.IJ;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -404,11 +406,14 @@ public class FindMaximaSpotDetector<T extends RealType<T> & NativeType<T>>
 		if (source.numDimensions() > 2) { // 3D
 			for (int i = 0; i < refined.size(); i++) {
 				final RefinedPeak<Point> peak = refined.get(i);
-				sourceRa.setPosition(peak.getOriginalPeak());
-				final double quality = sourceRa.get().getRealDouble();
+				
+				
 				final double x = peak.getDoublePosition(0) * calibration[0];
 				final double y = peak.getDoublePosition(1) * calibration[1];
 				final double z = peak.getDoublePosition(2) * calibration[2];
+				Point h = new Point((int)x,(int)y,(int)z);
+				sourceRa.setPosition(h);
+				final double quality = sourceRa.get().getRealDouble();
 				//double radius = 2; //getRadius(peak, secondDerivative)*calibration[0]
 				final Spot spot = new Spot(x, y, z,radius, quality);
 				spots.add(spot);
@@ -417,11 +422,15 @@ public class FindMaximaSpotDetector<T extends RealType<T> & NativeType<T>>
 			final double z = 0;
 			for (int i = 0; i < refined.size(); i++) {
 				final RefinedPeak<Point> peak = refined.get(i);
-				sourceRa.setPosition(peak.getOriginalPeak());
-				final double quality = sourceRa.get().getRealDouble();
+				
 				final double x = peak.getDoublePosition(0) * calibration[0];
 				final double y = peak.getDoublePosition(1) * calibration[1];
-				//radius.get(i)
+				IJ.log("x: " + peak.getOriginalPeak().getDoublePosition(0)
+						+ " y: " + peak.getOriginalPeak().getDoublePosition(1)+
+						" refined x: " + x + " refined y: " + y); 
+				Point h = new Point((int)x,(int)y,0);
+				sourceRa.setPosition(h);
+				final double quality = sourceRa.get().getRealDouble();
 			//	double radius = 2; //getRadius(peak, secondDerivative)*calibration[0]
 				final Spot spot = new Spot(x, y, z, radius, quality);
 				spots.add(spot);
@@ -432,10 +441,11 @@ public class FindMaximaSpotDetector<T extends RealType<T> & NativeType<T>>
 			final double y = 0;
 			for (int i = 0; i < refined.size(); i++) {
 				final RefinedPeak<Point> peak = refined.get(i);
-				sourceRa.setPosition(peak.getOriginalPeak());
-				final double quality = sourceRa.get().getRealDouble();
 				final double x = peak.getDoublePosition(0) * calibration[0];
 			//	double radius = 2; //getRadius(peak, secondDerivative)*calibration[0]
+				Point h = new Point((int)x,0,0);
+				sourceRa.setPosition(h);
+				final double quality = sourceRa.get().getRealDouble();
 				final Spot spot = new Spot(x, y, z, 2, quality);
 				spots.add(spot);
 			}
@@ -443,7 +453,9 @@ public class FindMaximaSpotDetector<T extends RealType<T> & NativeType<T>>
 
 		final long end = System.currentTimeMillis();
 		this.processingTime = end - start;
-
+		if(java.lang.Runtime.getRuntime().freeMemory()<1610612736){
+			System.gc();
+		}
 		return true;
 	}
 	
@@ -587,6 +599,7 @@ public class FindMaximaSpotDetector<T extends RealType<T> & NativeType<T>>
 				}
 			}
 		}
+		s =null;
 		return remove;
 	}
 	
